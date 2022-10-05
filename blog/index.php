@@ -1,4 +1,5 @@
-<!-- 
+<!-- index.php est le controleur de la page d'accueil
+
 ** src/model.php: se connecte à la base de données et récupère les billets.
 
 ** templates/homepage.php: affiche la page. Ce fichier ne va pas changer du tout.
@@ -16,6 +17,7 @@ ces 3 fichiers forment la base d'une structure MVC (Modèle - Vue - Contrôleur)
 
 
 <?php
+// index.php est le controleur de la page d'accueil
 
 //recuperer model.php
 require('src/model.php');
