@@ -1,5 +1,5 @@
 <?php
-// controllers/homepage.php
+// controllers/homepage.php responsable d'afficher la page d'accueil
 
 require_once('src/model.php');
 

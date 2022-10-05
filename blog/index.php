@@ -19,11 +19,28 @@ ces 3 fichiers forment la base d'une structure MVC (Modèle - Vue - Contrôleur)
 <?php
 // index.php est le controleur de la page d'accueil
 
-//recuperer model.php
-require('src/model.php');
+//on charge nos fichier de controleurs
+require_once('src/controllers/homepage.php');
+require_once('src/controllers/post.php');
 
-//utiliser le code de model.php (bibliotheque)
-$posts = getPosts();
+// on teste le parametre action pour savoir quel controleur appeler. Si le parametre n'est pas present, 
+// on charge le controleur de la pge d'accueil contenant la liste des derniers billets(ligne 42 (dernier else))
+// on verifie la presence du parametre action avec isset($_GET['action']) && qu'il n'est pas vide
+if (isset($_GET['action']) && $_GET['action'] !== '') {
+    //si il y a un parametre action et que l'action vaut post
+    if ($_GET['action'] === 'post') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $identifier = $_GET['id'];
+            //si l'action vaut post alors 
+            post($identifier);
+        } else {
+            echo 'Erreur : aucun identifiant de billet envoyé';
 
-//recuperer homepage.php pour affichage a renvoyer a l'utilisateur
-require('templates/homepage.php');
+            die;
+        }
+    } else {
+        echo 'Erreur 404 : la page que vous cherchez n\'existe pas';
+    }
+} else {
+    homepage();
+}
