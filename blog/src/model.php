@@ -37,39 +37,18 @@ function getPost($identifier)
         "SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y à %Hh%imin%ss') AS french_creation_date FROM posts WHERE id = ?"
     );
     $statement->execute([$identifier]);
-
+    // retourner title, content, identifier(identifiant), ... depuis la base de données
     $row = $statement->fetch();
     $post = [
         'title' => $row['title'],
         'french_creation_date' => $row['french_creation_date'],
         'content' => $row['content'],
+        'identifier' => $row['id'],
     ];
 
     return $post;
 }
 
-function getComments($identifier)
-{
-
-    $database = dbConnect();
-
-    $statement = $database->prepare(
-        "SELECT id, author, comment, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS french_creation_date FROM comments WHERE post_id = ? ORDER BY comment_date DESC"
-    );
-    $statement->execute([$identifier]);
-
-    $comments = [];
-    while (($row = $statement->fetch())) {
-        $comment = [
-            'author' => $row['author'],
-            'french_creation_date' => $row['french_creation_date'],
-            'comment' => $row['comment'],
-        ];
-        $comments[] = $comment;
-    }
-
-    return $comments;
-}
 
 // Nouvelle fonction qui nous permet d'eviter de repeter du code
 function dbConnect()
