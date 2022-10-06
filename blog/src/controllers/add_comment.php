@@ -14,14 +14,14 @@ function addComment(string $post, array $input)
         $author = $input['author'];
         $comment = $input['comment'];
     } else {
-        die('les données du formulaires sont invalides');
+        throw new Exception('les données du formulaires sont invalides');
     }
     // Ensuite on appel la fonction createComment definit par un nouveau modele
     // elle prend en parametre l'identifiant du billet, l'auteur et le commentaire
     // renvoi si l'operation de creation a bien reussi
     $succes = createComment($post, $author, $comment);
     if (!$succes) {
-        die('Impossible d\'ajouter le commentaire !');
+        throw new Exception('Impossible d\'ajouter le commentaire !');
     } else {
         // si bien reussi rediriger l'utilisateur vers la page du billet
         header('Location: index.php?action=post&id=' . $post);

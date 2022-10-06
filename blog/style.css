@@ -2,26 +2,47 @@ h1, h3
 {
     text-align:center;
 }
+h1{
+    font-size: 4em;
+    color:green;
+    border: solid 5px;
+    
+}
 h3
 {
     background-color:green;
     color:white;
-    font-size:0.9em;
+    font-size:2em;
     margin-bottom:0px;
+    padding: 2%;
 }
 .news p
 {
     background-color:#CCCCCC;
     margin-top:0px;
+    font-size:2em;
+    padding: 5%;
 }
 .news
 {
     width:70%;
     margin:auto;
 }
+p em{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+h3 em{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size:0.5em;
 
+}
 a
 {
     text-decoration: none;
     color: blue;
+
 }

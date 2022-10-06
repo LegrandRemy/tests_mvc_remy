@@ -27,36 +27,45 @@ require_once('src/controllers/post.php');
 // on teste le parametre action pour savoir quel controleur appeler. Si le parametre n'est pas present, 
 // on charge le controleur de la pge d'accueil contenant la liste des derniers billets(ligne 60 (dernier else))
 // on verifie la presence du parametre action avec isset($_GET['action']) && qu'il n'est pas vide
+try {
+    if (isset($_GET['action']) && $_GET['action'] !== '') {
+        //si il y a un parametre action et que l'action vaut post
+        if ($_GET['action'] === 'post') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $identifier = $_GET['id'];
 
-if (isset($_GET['action']) && $_GET['action'] !== '') {
-    //si il y a un parametre action et que l'action vaut post
-    if ($_GET['action'] === 'post') {
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
-            $identifier = $_GET['id'];
+                //si l'action vaut post alors 
+                post($identifier);
+            } else {
+                // throw new Exception arrete  le bloc try et amene directement l'ordi au bloc catch
+                throw new Exception('Erreur : aucun identifiant de billet envoyé... oohhhh l\'action ne vaut pas post');
 
-            //si l'action vaut post alors 
-            post($identifier);
-        } else {
-            echo 'Erreur : aucun identifiant de billet envoyé... oohhhh l\'action ne vaut pas post';
-
-            die;
+                die;
+            }
         }
-    }
-    // Verifier si l'action vaut add comment
-    // si c'est le cas on appele le nouveau controller addComment
-    elseif ($_GET['action'] === 'addComment') {
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
-            $identifier = $_GET['id'];
-            //$_post est une variable globale pour recuperer tous les parametres
-            addComment($identifier, $_POST);
-        } else {
-            echo 'Erreur : aucun identifiant de billet envoyé... oohhhh l\'action ne vaut pas addComment';
+        // Verifier si l'action vaut add comment
+        // si c'est le cas on appele le nouveau controller addComment
+        elseif ($_GET['action'] === 'addComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $identifier = $_GET['id'];
+                //$_post est une variable globale pour recuperer tous les parametres
+                addComment($identifier, $_POST);
+            } else {
+                // throw new Exception arrete  le bloc try et amene directement l'ordi au bloc catch
+                throw new Exception('Erreur : aucun identifiant de billet envoyé... oohhhh l\'action ne vaut pas addComment');
 
-            die;
+                die;
+            }
+        } else {
+            // throw new Exception arrete  le bloc try et amene directement l'ordi au bloc catch
+            throw new Exception('Erreur 404 : la page que vous cherchez n\'existe pas');
         }
     } else {
-        echo 'Erreur 404 : la page que vous cherchez n\'existe pas';
+        homepage();
     }
-} else {
-    homepage();
+} catch (Exception $e) { //si il y a eu une erreur, alors...
+    //echo 'Erreur : ' . $e->getMessage(); //affiche l'erreur qui nous a été envoyée...
+    $errorMessage = $e->getMessage();
+    //Ici, notre bloc catch se contente de récupérer le message d'erreur qu'on a transmis et de l'afficher.
+    require('template/error.php');
 }
