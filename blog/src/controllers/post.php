@@ -8,6 +8,7 @@ require_once('src/model/comment.php');
 // use pour dire a php que le nom PostRepository peut etre utilisé tel quel comme un alias a Application\....\post dans tout le fichier
 use Application\model\post\PostRepository;
 use Application\model\comment\CommentRepository;
+use Application\lib\Database\DatabaseConnection;
 
 //creer fonction qui prend en parametre un identifiant ($identifier)
 function post(string $identifier)

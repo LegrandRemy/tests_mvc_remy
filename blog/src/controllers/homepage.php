@@ -5,6 +5,7 @@ require_once('src/lib/database.php');
 require_once('src/model/post.php');
 
 use Application\model\post\PostRepository;
+use Application\lib\Database\DatabaseConnection;
 
 function homepage()
 {

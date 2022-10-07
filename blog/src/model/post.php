@@ -8,6 +8,9 @@
 namespace Application\model\post;
 
 require_once('src/lib/database.php');
+
+use Application\lib\Database\DatabaseConnection;
+
 class Post
 {
     public string $title;
@@ -24,7 +27,7 @@ class Post
 class PostRepository
 {
     //public DatabaseConnection $connection: on remplace la propriété $database par la propriété $connection de type DatabaseConnection
-    public \DatabaseConnection $connection;
+    public DatabaseConnection $connection;
 
     public function getPost(/*PostRepository $this,PostRepository $repository, */string $identifier): post
     {

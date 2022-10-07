@@ -5,6 +5,7 @@ require_once('src/lib/database.php');
 require_once('src/model/comment.php');
 
 use Application\model\comment\CommentRepository;
+use Application\lib\Database\DatabaseConnection;
 
 // creer une fonction addComment qui prend en parametre l'identifiant du billet concerné($post) et un input sous forme de tableau
 // cet input : données soumise par le formulaire

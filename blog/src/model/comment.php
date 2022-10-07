@@ -8,6 +8,8 @@
 
 namespace Application\model\comment;
 
+use Application\lib\Database\DatabaseConnection;
+
 class Comment
 {
     public string $author;
@@ -18,7 +20,7 @@ class Comment
 class CommentRepository
 {
     //public DatabaseConnection $connection: on remplace la propriété $database par la propriété $connection de type DatabaseConnection
-    public \DatabaseConnection $connection;
+    public DatabaseConnection $connection;
     public function getComments(string $post): array
     {
 
