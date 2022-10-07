@@ -2,6 +2,9 @@ h1, h3
 {
     text-align:center;
 }
+h2{
+    font-size: 3em;
+}
 h1{
     font-size: 4em;
     color:green;
@@ -23,11 +26,13 @@ h3
     font-size:2em;
     padding: 5%;
 }
+
 .news
 {
-    width:70%;
+    width:80%;
     margin:auto;
 }
+
 p em{
     display: flex;
     align-items: flex-end;
@@ -40,9 +45,27 @@ h3 em{
     font-size:0.5em;
 
 }
+
 a
 {
     text-decoration: none;
     color: blue;
 
+}
+.form{
+    
+    font-size:2em;
+}
+.form input, .form textarea{
+    width:40%;
+    font-size:0.5em;
+    margin-bottom: 5%;
+}
+label{
+    color: green;
+}
+.formSubmit input{
+padding: 10px;
+    font-size: 1em;
+    margin-bottom: 50px;
 }

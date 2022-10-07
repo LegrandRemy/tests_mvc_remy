@@ -67,5 +67,5 @@ try {
     //echo 'Erreur : ' . $e->getMessage(); //affiche l'erreur qui nous a été envoyée...
     $errorMessage = $e->getMessage();
     //Ici, notre bloc catch se contente de récupérer le message d'erreur qu'on a transmis et de l'afficher.
-    require('template/error.php');
+    require('templates/error.php');
 }
